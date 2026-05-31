@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHO-CHA-DA SME Assistant — User Manual</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600;700&family=Prompt:wght@600;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:  #FBF3E8;
+      --coffee: #3B2B24;
+      --latte:  #8D6E63;
+      --teal:   #00796B;
+      --teal2:  #E0F2F1;
+      --card:   #FFFFFF;
+      --border: #E8D9C8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Fonts — EN default ── */
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background: var(--cream);
+      color: var(--coffee);
+      line-height: 1.7;
+    }
+    h1, h2, h3 {
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+    }
+
+    /* ── Fonts — TH override ── */
+    body.th {
+      font-family: 'Sarabun', sans-serif;
+    }
+    body.th h1,
+    body.th h2,
+    body.th h3 {
+      font-family: 'Prompt', sans-serif;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--coffee);
+      color: #fff;
+      padding: 24px 20px 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.8rem; letter-spacing: 1px; }
+    header p  { opacity: .75; font-size: .95rem; margin-top: 4px; }
+
+    /* ── Language toggle ── */
+    .lang-bar {
+      background: var(--border);
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      position: sticky;
+      top: 0;
+      z-index: 99;
+    }
+    .lang-btn {
+      border: 2px solid var(--coffee);
+      background: transparent;
+      color: var(--coffee);
+      padding: 6px 22px;
+      border-radius: 20px;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s;
+    }
+    .lang-btn.active { background: var(--coffee); color: #fff; }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 20px auto;
+      max-width: 720px;
+    }
+    .toc h2 { font-size: 1rem; color: var(--teal); margin-bottom: 10px; }
+    .toc ol  { padding-left: 20px; }
+    .toc li  { margin: 4px 0; }
+    .toc a   { color: var(--coffee); text-decoration: none; font-weight: 500; }
+    .toc a:hover { color: var(--teal); }
+
+    /* ── Sections ── */
+    main { max-width: 720px; margin: 0 auto; padding: 0 16px 48px; }
+    section { margin-bottom: 36px; }
+    section h2 {
+      font-size: 1.25rem;
+      color: var(--coffee);
+      border-left: 4px solid var(--teal);
+      padding-left: 12px;
+      margin-bottom: 14px;
+      scroll-margin-top: 52px;
+    }
+    section h3 { font-size: 1rem; color: var(--teal); margin: 18px 0 8px; }
+    section p  { margin-bottom: 10px; color: #4a3728; }
+    section ul, section ol { padding-left: 20px; margin-bottom: 10px; }
+    section li { margin: 5px 0; }
+
+    /* ── Step list ── */
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 16px;           /* space between circle and text */
+      align-items: flex-start;
+      margin-bottom: 14px; /* space between steps */
+      padding-left: 4px;
+    }
+    .steps li::before {
+      content: counter(step);
+      width: 30px; height: 30px;
+      background: var(--teal);
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 700; font-size: .85rem; flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* ── Screenshot placeholder ── */
+    .screenshot {
+      background: #f0e8df;
+      border: 2px dashed var(--latte);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      margin: 14px 0;
+      color: var(--latte);
+      font-size: .85rem;
+    }
+    .screenshot img {
+      max-width: 100%;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+    .screenshot .cap { display: block; margin-top: 6px; font-style: italic; }
+
+    /* ── Tip / Warning boxes ── */
+    .tip, .warn {
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: .92rem;
+    }
+    .tip  { background: var(--teal2); border-left: 4px solid var(--teal); }
+    .warn { background: #FFF3E0;      border-left: 4px solid #E65100; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: .8rem;
+      color: var(--latte);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    /* ── Language show / hide ── */
+    [data-lang="th"] { display: none; }
+    body.th [data-lang="th"] { display: block; }
+    body.th [data-lang="en"] { display: none; }
+
+    /* screenshot captions: .screenshot .cap = (0,2,0) beats base rule → override explicitly */
+    .screenshot .cap[data-lang="th"] { display: none; }
+    body.th .screenshot .cap[data-lang="th"] { display: block; }
+    body.th .screenshot .cap[data-lang="en"] { display: none; }
+
+    /* inline spans inside tip/warn */
+    .tip  [data-lang="th"],
+    .warn [data-lang="th"] { display: none; }
+    body.th .tip  [data-lang="th"],
+    body.th .warn [data-lang="th"] { display: inline; }
+    body.th .tip  [data-lang="en"],
+    body.th .warn [data-lang="en"] { display: none; }
+
+    @media print {
+      .lang-bar { display: none; }
+      [data-lang] { display: revert !important; }
+    }
+  </style>
+</head>
+<body class="en">
+
+<header>
+  <h1>CHO-CHA-DA SME Assistant</h1>
+  <p data-lang="en">User Manual — Version 1.0</p>
+  <p data-lang="th">คู่มือการใช้งาน — เวอร์ชัน 1.0</p>
+</header>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">English</button>
+  <button class="lang-btn"        onclick="setLang('th')">ไทย</button>
+</div>
+
+<div class="toc">
+  <h2 data-lang="en">Contents</h2>
+  <h2 data-lang="th">สารบัญ</h2>
+  <ol>
+    <li><a href="#s1" data-lang="en">First Launch &amp; PIN Setup</a>
+        <a href="#s1" data-lang="th">เปิดแอปครั้งแรกและตั้ง PIN</a></li>
+    <li><a href="#s2" data-lang="en">Home Screen</a>
+        <a href="#s2" data-lang="th">หน้าหลัก</a></li>
+    <li><a href="#s3" data-lang="en">Scan &amp; Sell</a>
+        <a href="#s3" data-lang="th">สแกน QR เพื่อขาย</a></li>
+    <li><a href="#s4" data-lang="en">Manage Products &amp; Materials</a>
+        <a href="#s4" data-lang="th">จัดการสินค้าและวัตถุดิบ</a></li>
+    <li><a href="#s5" data-lang="en">Inventory (Receive / Use)</a>
+        <a href="#s5" data-lang="th">รับสินค้า / เบิกวัตถุดิบ</a></li>
+    <li><a href="#s6" data-lang="en">Sales Report</a>
+        <a href="#s6" data-lang="th">รายงานยอดขาย</a></li>
+    <li><a href="#s7" data-lang="en">QR Code Creation</a>
+        <a href="#s7" data-lang="th">สร้าง QR Code สินค้า</a></li>
+    <li><a href="#s8" data-lang="en">Settings</a>
+        <a href="#s8" data-lang="th">ตั้งค่า</a></li>
+  </ol>
+</div>
+
+<main>
+
+<!-- ══ Section 1 ══ -->
+<section id="s1">
+  <h2 data-lang="en">1. First Launch &amp; PIN Setup</h2>
+  <h2 data-lang="th">1. เปิดแอปครั้งแรกและตั้ง PIN</h2>
+
+  <p data-lang="en">When you open the app for the first time, you will be asked to create a 6-digit PIN to protect your shop data.</p>
+  <p data-lang="th">เมื่อเปิดแอปเป็นครั้งแรก ระบบจะขอให้ตั้งรหัส PIN 6 หลักเพื่อป้องกันข้อมูลร้าน</p>
+
+  <div class="screenshot">
+    <img src="screenshots/01-pin-setup.png" alt="PIN setup" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 PIN setup screen</span>
+    <span class="cap" data-lang="th">📸 หน้าตั้ง PIN</span>
+  </div>
+
+  <!-- data-lang on the <ol>, not the <li> — avoids specificity conflict with .steps li -->
+  <ol class="steps" data-lang="en">
+    <li>Enter a 6-digit PIN (avoid easy codes like 000000 or 123456).</li>
+    <li>Enter the same PIN again to confirm.</li>
+    <li>The app opens automatically after PIN is set.</li>
+  </ol>
+  <ol class="steps" data-lang="th">
+    <li>กรอก PIN 6 หลัก (หลีกเลี่ยงรหัสง่ายเช่น 000000 หรือ 123456)</li>
+    <li>กรอก PIN เดิมอีกครั้งเพื่อยืนยัน</li>
+    <li>แอปจะเปิดใช้งานได้ทันทีหลังตั้ง PIN สำเร็จ</li>
+  </ol>
+
+  <h3 data-lang="en">Fingerprint Unlock</h3>
+  <h3 data-lang="th">ปลดล็อกด้วยลายนิ้วมือ</h3>
+  <p data-lang="en">Enable fingerprint unlock in <strong>Settings → Unlock with fingerprint</strong>. On subsequent launches the app prompts for your fingerprint automatically.</p>
+  <p data-lang="th">เปิดใช้ลายนิ้วมือได้ที่ <strong>ตั้งค่า → ปลดล็อกด้วยลายนิ้วมือ</strong> เมื่อเปิดแอปครั้งถัดไประบบจะขอลายนิ้วมือโดยอัตโนมัติ</p>
+
+  <div class="tip">
+    <strong><span data-lang="en">💡 Tip:</span><span data-lang="th">💡 เคล็ดลับ:</span></strong>
+    <span data-lang="en"> You can change your PIN anytime in Settings → Change PIN.</span>
+    <span data-lang="th"> เปลี่ยน PIN ได้ตลอดเวลาที่ ตั้งค่า → เปลี่ยน PIN</span>
+  </div>
+</section>
+
+<!-- ══ Section 2 ══ -->
+<section id="s2">
+  <h2 data-lang="en">2. Home Screen</h2>
+  <h2 data-lang="th">2. หน้าหลัก</h2>
+
+  <p data-lang="en">The home screen shows today's sales summary and quick-access buttons for all main features.</p>
+  <p data-lang="th">หน้าหลักแสดงยอดขายวันนี้และปุ่มลัดสู่ฟีเจอร์หลักทั้งหมด</p>
+
+  <div class="screenshot">
+    <img src="screenshots/02-home.png" alt="Home screen" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Home screen</span>
+    <span class="cap" data-lang="th">📸 หน้าหลัก</span>
+  </div>
+
+  <ul data-lang="en">
+    <li><strong>Scan &amp; Sell</strong> — Open camera to scan product QR codes</li>
+    <li><strong>Stock in</strong> — Receive new inventory or issue materials</li>
+    <li><strong>Sales report</strong> — View daily / monthly / all-time summaries</li>
+    <li><strong>Manage items</strong> — Add, edit, or delete products and materials</li>
+    <li><strong>Create QR</strong> — Generate printable QR codes for products</li>
+  </ul>
+  <ul data-lang="th">
+    <li><strong>สแกน &amp; ขาย</strong> — เปิดกล้องเพื่อสแกน QR สินค้า</li>
+    <li><strong>รับสินค้า</strong> — รับสินค้าเข้าคลังหรือเบิกวัตถุดิบ</li>
+    <li><strong>รายงานยอดขาย</strong> — ดูสรุปรายวัน / รายเดือน / ทั้งหมด</li>
+    <li><strong>จัดการสินค้า</strong> — เพิ่ม แก้ไข หรือลบสินค้า/วัตถุดิบ</li>
+    <li><strong>สร้าง QR</strong> — สร้าง QR Code สำหรับพิมพ์ติดสินค้า</li>
+  </ul>
+</section>
+
+<!-- ══ Section 3 ══ -->
+<section id="s3">
+  <h2 data-lang="en">3. Scan &amp; Sell</h2>
+  <h2 data-lang="th">3. สแกน QR เพื่อขาย</h2>
+
+  <p data-lang="en">Point the camera at a product's QR code. Each scan adds one unit to the cart automatically.</p>
+  <p data-lang="th">ส่องกล้องไปที่ QR Code บนสินค้า ระบบจะเพิ่มสินค้า 1 ชิ้นเข้าตะกร้าโดยอัตโนมัติทุกครั้งที่สแกน</p>
+
+  <div class="screenshot">
+    <img src="screenshots/03-scanner.png" alt="Scanner" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 QR scanner with cart bar</span>
+    <span class="cap" data-lang="th">📸 หน้าสแกน QR พร้อมแถบตะกร้า</span>
+  </div>
+
+  <h3 data-lang="en">Checkout</h3>
+  <h3 data-lang="th">ชำระเงิน</h3>
+
+  <ol class="steps" data-lang="en">
+    <li>Tap the green <strong>Pay ฿XX</strong> button at the bottom.</li>
+    <li>Choose a payment channel (Cash / Bank Transfer / Online Sales).</li>
+    <li>For cash: enter amount received — change is calculated automatically.</li>
+    <li>Tap <strong>Save sale</strong> to confirm.</li>
+    <li>A receipt appears — tap <strong>Share</strong> to send or <strong>Finish</strong> to return home.</li>
+  </ol>
+  <ol class="steps" data-lang="th">
+    <li>กดปุ่มสีเขียว <strong>จ่าย ฿XX</strong> ที่ด้านล่าง</li>
+    <li>เลือกช่องทางชำระเงิน (เงินสด / โอนเงิน / ขายออนไลน์)</li>
+    <li>กรณีเงินสด: กรอกจำนวนที่รับมา ระบบคิดเงินทอนให้อัตโนมัติ</li>
+    <li>กด <strong>บันทึกการขาย</strong> เพื่อยืนยัน</li>
+    <li>ใบเสร็จจะแสดงขึ้นมา กด <strong>แชร์</strong> เพื่อส่ง หรือ <strong>เสร็จสิ้น</strong> เพื่อกลับหน้าหลัก</li>
+  </ol>
+
+  <div class="screenshot">
+    <img src="screenshots/03b-payment.png" alt="Payment" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Payment screen</span>
+    <span class="cap" data-lang="th">📸 หน้าชำระเงิน</span>
+  </div>
+  <div class="screenshot">
+    <img src="screenshots/03c-receipt.png" alt="Receipt" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Receipt screen</span>
+    <span class="cap" data-lang="th">📸 หน้าใบเสร็จ</span>
+  </div>
+</section>
+
+<!-- ══ Section 4 ══ -->
+<section id="s4">
+  <h2 data-lang="en">4. Manage Products &amp; Materials</h2>
+  <h2 data-lang="th">4. จัดการสินค้าและวัตถุดิบ</h2>
+
+  <p data-lang="en">Tap <strong>Manage items</strong> on the home screen to add, edit, or remove products and raw materials.</p>
+  <p data-lang="th">กด <strong>จัดการสินค้า</strong> บนหน้าหลักเพื่อเพิ่ม แก้ไข หรือลบสินค้าและวัตถุดิบ</p>
+
+  <div class="screenshot">
+    <img src="screenshots/04-manage.png" alt="Manage items" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Manage items list</span>
+    <span class="cap" data-lang="th">📸 รายการจัดการสินค้า</span>
+  </div>
+
+  <h3 data-lang="en">Adding an Item</h3>
+  <h3 data-lang="th">เพิ่มสินค้า / วัตถุดิบ</h3>
+
+  <ol class="steps" data-lang="en">
+    <li>Tap the <strong>+</strong> button (bottom-right).</li>
+    <li>Choose type: <strong>For sale</strong> (appears on sell screen) or <strong>Material</strong> (stock tracking only).</li>
+    <li>Fill in name, price, category, and starting stock.</li>
+    <li>Set the <strong>Low-stock alert level</strong> (default 5 — triggers a warning badge).</li>
+    <li>Tap <strong>Save</strong>.</li>
+  </ol>
+  <ol class="steps" data-lang="th">
+    <li>กดปุ่ม <strong>+</strong> มุมขวาล่าง</li>
+    <li>เลือกประเภท: <strong>เมนูขาย</strong> (แสดงในหน้าขาย) หรือ <strong>วัตถุดิบ</strong> (ติดตามสต๊อกเท่านั้น)</li>
+    <li>กรอกชื่อ ราคา หมวดหมู่ และจำนวนสต๊อกเริ่มต้น</li>
+    <li>ตั้ง <strong>ระดับแจ้งเตือนสินค้าเหลือน้อย</strong> (ค่าเริ่มต้น 5)</li>
+    <li>กด <strong>บันทึก</strong></li>
+  </ol>
+
+  <div class="tip">
+    <strong><span data-lang="en">💡 Tip:</span><span data-lang="th">💡 เคล็ดลับ:</span></strong>
+    <span data-lang="en"> Items marked "Material" will not appear on the sell/scan screen — only in inventory management.</span>
+    <span data-lang="th"> สินค้าประเภท "วัตถุดิบ" จะไม่แสดงในหน้าขาย — จะแสดงเฉพาะในหน้าจัดการสต๊อก</span>
+  </div>
+
+  <h3 data-lang="en">Editing &amp; Deleting</h3>
+  <h3 data-lang="th">แก้ไขและลบสินค้า</h3>
+  <p data-lang="en">Tap <strong>Edit</strong> on any item row to update its details. Tap the ⋮ menu → <strong>Delete</strong> to remove it (confirmation required).</p>
+  <p data-lang="th">กด <strong>แก้ไข</strong> บนแถวสินค้าเพื่ออัปเดตข้อมูล กด ⋮ เมนู → <strong>ลบ</strong> เพื่อลบออก (ระบบจะขอยืนยัน)</p>
+</section>
+
+<!-- ══ Section 5 ══ -->
+<section id="s5">
+  <h2 data-lang="en">5. Inventory — Receive / Use</h2>
+  <h2 data-lang="th">5. คลังสินค้า — รับเข้า / เบิกใช้</h2>
+
+  <p data-lang="en">Tap <strong>Stock in</strong> on the home screen. Use the <strong>Menu</strong> tab for sellable items and the <strong>Materials</strong> tab for raw ingredients.</p>
+  <p data-lang="th">กด <strong>รับสินค้า</strong> บนหน้าหลัก ใช้แท็บ <strong>เมนู</strong> สำหรับสินค้าขาย และแท็บ <strong>วัตถุดิบ</strong> สำหรับส่วนผสม</p>
+
+  <div class="screenshot">
+    <img src="screenshots/05-inventory.png" alt="Inventory" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Inventory screen (Materials tab)</span>
+    <span class="cap" data-lang="th">📸 หน้าคลังสินค้า (แท็บวัตถุดิบ)</span>
+  </div>
+
+  <ul data-lang="en">
+    <li><strong>Receive</strong> — Add stock (e.g. new coffee beans delivery)</li>
+    <li><strong>Use</strong> — Deduct stock manually (e.g. used ingredients today)</li>
+  </ul>
+  <ul data-lang="th">
+    <li><strong>รับเข้า</strong> — เพิ่มสต๊อก (เช่น ได้รับเมล็ดกาแฟมาใหม่)</li>
+    <li><strong>เบิกใช้</strong> — ตัดสต๊อกมือ (เช่น ใช้วัตถุดิบไปในวันนี้)</li>
+  </ul>
+
+  <div class="warn">
+    <strong><span data-lang="en">⚠️ Low Stock Warning:</span><span data-lang="th">⚠️ แจ้งเตือนสินค้าเหลือน้อย:</span></strong>
+    <span data-lang="en"> A red <em>Low</em> badge appears when stock falls to or below the alert level. Restock promptly to avoid running out during sales.</span>
+    <span data-lang="th"> ป้ายแดง <em>เหลือน้อย</em> จะปรากฏเมื่อสต๊อกลดถึงระดับที่ตั้งไว้ รีบรับสินค้าเข้าเพื่อไม่ให้สินค้าหมดระหว่างขาย</span>
+  </div>
+</section>
+
+<!-- ══ Section 6 ══ -->
+<section id="s6">
+  <h2 data-lang="en">6. Sales Report</h2>
+  <h2 data-lang="th">6. รายงานยอดขาย</h2>
+
+  <p data-lang="en">Tap <strong>Sales report</strong> on the home screen to view your income summary.</p>
+  <p data-lang="th">กด <strong>รายงานยอดขาย</strong> บนหน้าหลักเพื่อดูสรุปรายได้</p>
+
+  <div class="screenshot">
+    <img src="screenshots/06-report.png" alt="Sales report" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Sales report (Daily view)</span>
+    <span class="cap" data-lang="th">📸 รายงานยอดขาย (รายวัน)</span>
+  </div>
+
+  <ul data-lang="en">
+    <li><strong>Daily</strong> — Today's total sales and item count</li>
+    <li><strong>This month</strong> — Current month summary</li>
+    <li><strong>All</strong> — Lifetime totals</li>
+    <li><strong>Income by channel</strong> — Breakdown by Cash / Transfer / Online</li>
+    <li><strong>Best sellers</strong> — Top-selling products in the period</li>
+  </ul>
+  <ul data-lang="th">
+    <li><strong>วันนี้</strong> — ยอดขายและจำนวนบิลวันนี้</li>
+    <li><strong>เดือนนี้</strong> — สรุปเดือนปัจจุบัน</li>
+    <li><strong>ทั้งหมด</strong> — ยอดรวมตลอดการใช้งาน</li>
+    <li><strong>รายได้แยกช่องทาง</strong> — แบ่งตามเงินสด / โอน / ออนไลน์</li>
+    <li><strong>สินค้าขายดี</strong> — สินค้าที่ขายได้มากที่สุดในช่วงเวลานั้น</li>
+  </ul>
+</section>
+
+<!-- ══ Section 7 ══ -->
+<section id="s7">
+  <h2 data-lang="en">7. QR Code Creation</h2>
+  <h2 data-lang="th">7. สร้าง QR Code สินค้า</h2>
+
+  <p data-lang="en">Tap <strong>Create QR</strong> on the home screen to generate QR codes you can print and stick on products or a menu board.</p>
+  <p data-lang="th">กด <strong>สร้าง QR</strong> บนหน้าหลักเพื่อสร้าง QR Code พิมพ์ติดบนสินค้าหรือเมนู</p>
+
+  <div class="screenshot">
+    <img src="screenshots/07-qr-create.png" alt="QR create" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Create QR screen</span>
+    <span class="cap" data-lang="th">📸 หน้าสร้าง QR Code</span>
+  </div>
+
+  <ul data-lang="en">
+    <li><strong>Single QR</strong> — Select a product → <em>Create QR for this item</em> → Share or save the image.</li>
+    <li><strong>Print many</strong> — Select multiple products → <em>Create QR sheet</em> — all QRs on one printable image.</li>
+  </ul>
+  <ul data-lang="th">
+    <li><strong>QR เดี่ยว</strong> — เลือกสินค้า → <em>สร้าง QR สำหรับสินค้านี้</em> → แชร์หรือบันทึกภาพ</li>
+    <li><strong>พิมพ์หลายชิ้น</strong> — เลือกหลายรายการ → <em>สร้างแผ่น QR</em> — ระบบรวม QR ทั้งหมดในภาพเดียว</li>
+  </ul>
+
+  <div class="tip">
+    <strong><span data-lang="en">💡 Tip:</span><span data-lang="th">💡 เคล็ดลับ:</span></strong>
+    <span data-lang="en"> The QR image includes your shop name, product name, and price — ready to print immediately.</span>
+    <span data-lang="th"> ภาพ QR มีชื่อร้าน ชื่อสินค้า และราคาอยู่แล้ว พิมพ์ได้ทันที</span>
+  </div>
+</section>
+
+<!-- ══ Section 8 ══ -->
+<section id="s8">
+  <h2 data-lang="en">8. Settings</h2>
+  <h2 data-lang="th">8. ตั้งค่า</h2>
+
+  <p data-lang="en">Tap the ⚙️ icon (top-right on the home screen) to open Settings.</p>
+  <p data-lang="th">กดไอคอน ⚙️ มุมบนขวาของหน้าหลักเพื่อเข้าตั้งค่า</p>
+
+  <div class="screenshot">
+    <img src="screenshots/08-settings.png" alt="Settings" onerror="this.style.display='none'">
+    <span class="cap" data-lang="en">📸 Settings screen</span>
+    <span class="cap" data-lang="th">📸 หน้าตั้งค่า</span>
+  </div>
+
+  <h3 data-lang="en">Shop Name &amp; Logo</h3>
+  <h3 data-lang="th">ชื่อร้านและโลโก้</h3>
+  <p data-lang="en">Enter your shop name and select a logo image from your gallery. The logo appears on printed QR codes.</p>
+  <p data-lang="th">กรอกชื่อร้านและเลือกรูปโลโก้จากคลังภาพ โลโก้จะปรากฏบน QR Code ที่พิมพ์ออกมา</p>
+
+  <h3 data-lang="en">Language &amp; Currency</h3>
+  <h3 data-lang="th">ภาษาและสกุลเงิน</h3>
+  <p data-lang="en">Switch between <strong>English</strong> and <strong>ไทย</strong> instantly. Choose your currency symbol (฿ $ € S$ RM ₫) — all prices update throughout the app.</p>
+  <p data-lang="th">สลับระหว่าง <strong>English</strong> และ <strong>ไทย</strong> ได้ทันที เลือกสัญลักษณ์สกุลเงิน (฿ $ € S$ RM ₫) — ราคาทุกหน้าจะเปลี่ยนตาม</p>
+
+  <h3 data-lang="en">Security — Change PIN / Biometric</h3>
+  <h3 data-lang="th">ความปลอดภัย — เปลี่ยน PIN / ลายนิ้วมือ</h3>
+  <p data-lang="en">Change your 6-digit PIN at any time. Toggle fingerprint unlock on or off.</p>
+  <p data-lang="th">เปลี่ยน PIN 6 หลักได้ตลอดเวลา เปิด/ปิดการปลดล็อกด้วยลายนิ้วมือ</p>
+
+  <h3 data-lang="en">Backup &amp; Restore</h3>
+  <h3 data-lang="th">สำรองข้อมูลและกู้คืน</h3>
+
+  <ol class="steps" data-lang="en">
+    <li><strong>Back up</strong> — Creates <code>chochada_backup.csv</code>. Share it to Google Drive, LINE Keep, or email.</li>
+    <li><strong>Restore</strong> — Tap <em>Restore from file</em>, select the <code>.csv</code> file, confirm. All products and sales are restored.</li>
+  </ol>
+  <ol class="steps" data-lang="th">
+    <li><strong>สำรองข้อมูล</strong> — สร้างไฟล์ <code>chochada_backup.csv</code> แชร์ไปยัง Google Drive, LINE Keep หรืออีเมล</li>
+    <li><strong>กู้คืนข้อมูล</strong> — กด <em>กู้คืนจากไฟล์</em> เลือกไฟล์ <code>.csv</code> แล้วยืนยัน ข้อมูลสินค้าและยอดขายจะกลับมาครบ</li>
+  </ol>
+
+  <div class="warn">
+    <strong><span data-lang="en">⚠️ Important:</span><span data-lang="th">⚠️ สำคัญ:</span></strong>
+    <span data-lang="en"> Restoring will replace all current data. Back up first if you want to keep existing records.</span>
+    <span data-lang="th"> การกู้คืนจะแทนที่ข้อมูลทั้งหมดที่มีอยู่ สำรองข้อมูลก่อนหากต้องการเก็บข้อมูลปัจจุบัน</span>
+  </div>
+
+  <h3 data-lang="en">Privacy Policy &amp; Logout</h3>
+  <h3 data-lang="th">นโยบายความเป็นส่วนตัวและออกจากระบบ</h3>
+  <p data-lang="en">Tap <strong>Privacy policy</strong> to view our data practices in your browser. Tap <strong>Lock &amp; sign out</strong> to lock the app immediately — enter your PIN again to re-enter.</p>
+  <p data-lang="th">กด <strong>นโยบายความเป็นส่วนตัว</strong> เพื่อดูนโยบายข้อมูลในเบราว์เซอร์ กด <strong>ล็อก &amp; ออกจากระบบ</strong> เพื่อล็อกแอปทันที — ต้องกรอก PIN ใหม่เพื่อเข้าใช้</p>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span>. All rights reserved.</p>
+  <p style="margin-top:6px">
+    <a href="privacy-ccd-sme-assistant.html" style="color:var(--teal)" data-lang="en">Privacy Policy</a>
+    <a href="privacy-ccd-sme-assistant.html" style="color:var(--teal)" data-lang="th">นโยบายความเป็นส่วนตัว</a>
+  </p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.trim() === (lang === 'en' ? 'English' : 'ไทย'));
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
+</body>
+</html>
