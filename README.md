@@ -6,4 +6,4 @@
 • 🌐 **Global-Ready:** Single-app codebase with built-in multi-language translation (EN/TH) and dynamic currency support.
 • 🛡️ **Enterprise Architecture:** Designed with Material 3 styling and structured to seamlessly scale from a secure local embedded database (Hive/Isar) into a multi-store Cloud SaaS platform powered by Firebase.
 
-**Copyright (c) 2026 CHO-CHA-DA. All rights reserved.**
+**Copyright (c) 2026 MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span>. All rights reserved.**
