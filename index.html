@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy & Copyright - CHO-CHA-DA SME Assistant</title>
+    
+    <link rel="icon" type="image/png" href="assets/images/ccd-logo-gold.png">
+    <link rel="apple-touch-icon" href="assets/images/ccd-logo-gold.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Prompt:wght@400;600&display=swap" rel="stylesheet">
@@ -30,12 +34,26 @@
             background-color: var(--primary-color);
             color: #ffffff;
             text-align: center;
-            padding: 40px 20px;
+            padding: 50px 20px 40px 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
+        /* 🌟 ส่วนที่ 2: ดีไซน์รูปทรงโลโก้ในหน้าเว็บกึ่งมินิมอล */
+        .brand-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 15px;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
+        }
+
         header h1 {
-            margin: 0;
+            margin: 5px 0 0 0;
             font-size: 2.2rem;
             font-weight: 600;
             letter-spacing: 1px;
@@ -133,6 +151,7 @@
 
         @media (max-width: 600px) {
             header h1 { font-size: 1.8rem; }
+            .brand-logo { width: 100px; height: 100px; }
             section { padding: 25px; }
             .nav-buttons { flex-direction: column; }
         }
@@ -141,6 +160,7 @@
 <body>
 
     <header>
+        <img src="assets/images/ccd-logo-gold.png" alt="CHO-CHA-DA Logo" class="brand-logo">
         <h1>CHO-CHA-DA SME Assistant</h1>
         <p>Legal Information & Global Developer Center</p>
     </header>
@@ -151,7 +171,6 @@
     </div>
 
     <main>
-        <!-- ================= THAI VERSION ================= -->
         <section id="thai-version">
             <h2>นโยบายความเป็นส่วนตัวและลิขสิทธิ์</h2>
             <div class="meta-date">ปรับปรุงล่าสุด: 31 พฤษภาคม 2026</div>
@@ -175,7 +194,6 @@
             <p style="margin-top: 30px; font-weight: 600;">หากท่านมีข้อสงสัยเกี่ยวกับนโยบายฉบับนี้ สามารถติดต่อผู้พัฒนาได้ผ่านช่องทางอย่างเป็นทางการของแบรนด์ CHO-CHA-DA</p>
         </section>
 
-        <!-- ================= ENGLISH VERSION ================= -->
         <section id="english-version">
             <h2>Privacy Policy & Copyright Notice</h2>
             <div class="meta-date">Last Updated: May 31, 2026</div>
