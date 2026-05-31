@@ -4,10 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CHO-CHA-DA SME Assistant — User Manual</title>
-
-  <link rel="icon" type="image/png" href="asset/image/ccd-logo-black.png">
-  <link rel="apple-touch-icon" href="asset/image/ccd-logo-black.png">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600;700&family=Prompt:wght@600;700&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
@@ -54,19 +50,6 @@
     header h1 { font-size: 1.8rem; letter-spacing: 1px; }
     header p  { opacity: .75; font-size: .95rem; margin-top: 4px; }
 
-    .brand-logo {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 5px;
-      object-fit: contain;
-      filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.2));
-      transition: transform 0.3s ease;
-    }
-
-    .brand-logo:hover {
-      transform: scale(1.05);
-    }
-    
     /* ── Language toggle ── */
     .lang-bar {
       background: var(--border);
@@ -122,26 +105,27 @@
     section ul, section ol { padding-left: 20px; margin-bottom: 10px; }
     section li { margin: 5px 0; }
 
-    /* ── Step list ── */
+    /* ── Step list — absolute-positioned circle, block text ── */
     .steps { counter-reset: step; list-style: none; padding: 0; }
     .steps li {
       counter-increment: step;
-      display: flex;
-      gap: 16px;           /* space between circle and text */
-      align-items: flex-start;
-      margin-bottom: 14px; /* space between steps */
-      padding-left: 4px;
+      position: relative;
+      padding: 4px 0 4px 46px; /* 30px circle + 16px gap */
+      margin-bottom: 12px;
+      text-align: justify;
+      line-height: 1.65;
     }
     .steps li::before {
       content: counter(step);
+      position: absolute;
+      left: 0; top: 4px;
       width: 30px; height: 30px;
       background: var(--teal);
       color: #fff;
       border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-family: 'Montserrat', 'Inter', sans-serif;
-      font-weight: 700; font-size: .85rem; flex-shrink: 0;
-      margin-top: 3px;
+      font-weight: 700; font-size: .85rem;
     }
 
     /* ── Screenshot placeholder ── */
@@ -210,7 +194,6 @@
 <body class="en">
 
 <header>
-  <img src="asset/image/ccd-logo-gold.png" alt="CHO-CHA-DA Logo" class="brand-logo">
   <h1>CHO-CHA-DA SME Assistant</h1>
   <p data-lang="en">User Manual — Version 1.0</p>
   <p data-lang="th">คู่มือการใช้งาน — เวอร์ชัน 1.0</p>
@@ -550,8 +533,8 @@
 <footer>
   <p>© 2026 MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span>. All rights reserved.</p>
   <p style="margin-top:6px">
-    <a href="privacy-ccd-sme-assistant.html" style="color:var(--teal)" data-lang="en">Privacy Policy</a>
-    <a href="privacy-ccd-sme-assistant.html" style="color:var(--teal)" data-lang="th">นโยบายความเป็นส่วนตัว</a>
+    <a href="https://maechada2024.github.io/chochada-sme-assistant/docs/privacy-ccd-sme-assistant.html" style="color:var(--teal)" data-lang="en">Privacy Policy</a>
+    <a href="https://maechada2024.github.io/chochada-sme-assistant/docs/privacy-ccd-sme-assistant.html" style="color:var(--teal)" data-lang="th">นโยบายความเป็นส่วนตัว</a>
   </p>
 </footer>
 
