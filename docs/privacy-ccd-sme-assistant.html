@@ -1,242 +1,440 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy & Copyright - CHO-CHA-DA SME Assistant</title>
-    
-    <link rel="icon" type="image/png" href="asset/image/ccd-logo-black.png">
-    <link rel="apple-touch-icon" href="asset/image/ccd-logo-black.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — SME Assistant | MaeChada</title>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:      #FBF3E8;
+      --header:  #3B2B24;
+      --accent:  #00796B;
+      --card:    #ffffff;
+      --text:    #4a3c36;
+      --muted:   #7a6a62;
+      --border:  #e8ddd4;
+      --radius:  12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Prompt', 'Inter', sans-serif; line-height: 1.75; }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Prompt:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        /* 🎨 ใช้ชุดสี "Creamy Coffee" ของแบรนด์ CHO-CHA-DA */
-        :root {
-            --bg-color: #FBF3E8;       /* สีครีมนมนุ่มๆ */
-            --primary-color: #3B2B24;  /* สีน้ำตาลเข้มเมล็ดกาแฟ */
-            --accent-color: #00796B;   /* สีเขียวพรีเมียมเทล */
-            --card-bg: #ffffff;
-            --text-muted: #6d5c54;
-        }
+    /* ── Header ── */
+    header {
+      background: var(--header);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px 32px;
+    }
+    header img {
+      width: 100px; height: 100px; object-fit: contain; margin-bottom: 16px;
+      transition: transform .3s;
+    }
+    header img:hover { transform: scale(1.07); }
+    header h1 { font-size: 1.6rem; font-weight: 600; letter-spacing: .02em; }
+    header p  { font-size: .9rem; opacity: .75; margin-top: 6px; }
 
-        body {
-            font-family: 'Prompt', 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--primary-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
+    /* ── Language nav ── */
+    nav {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: center;
+      padding: 24px 16px;
+      background: var(--bg);
+      position: sticky; top: 0; z-index: 10;
+      border-bottom: 1px solid var(--border);
+    }
+    nav a {
+      padding: 8px 22px; border-radius: 24px; font-size: .9rem; font-weight: 600;
+      text-decoration: none; transition: opacity .2s;
+    }
+    nav a.th { background: var(--header); color: #fff; }
+    nav a.en { background: var(--accent);  color: #fff; }
+    nav a:hover { opacity: .8; }
 
-        header {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            text-align: center;
-            padding: 50px 20px 40px 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    /* ── Main ── */
+    main { max-width: 800px; margin: 0 auto; padding: 40px 20px 60px; }
 
-        .brand-logo {
-            width: 120px;
-            height: 120px;
-            margin-bottom: 5px;
-            object-fit: contain;
-            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.2));
-            transition: transform 0.3s ease;
-        }
+    section.lang { display: none; }
+    section.lang:target,
+    section.lang.active { display: block; }
 
-        header h1 {
-            margin: 0;
-            padding: 0;
-            font-size: 2.2rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            line-height: 1.2;
-        }
+    /* show Thai by default */
+    #thai-version { display: block; }
 
-        .brand-logo:hover {
-            transform: scale(1.05);
-        }
+    /* ── Card ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(59,43,36,.06);
+    }
+    .card h2 {
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--header);
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+      margin-bottom: 14px;
+    }
+    .card h3 { font-size: .97rem; font-weight: 600; margin: 16px 0 6px; color: var(--header); }
+    .card p  { margin-bottom: 10px; }
+    .card ul { padding-left: 20px; margin-bottom: 10px; }
+    .card ul li { margin-bottom: 5px; }
+    .card a  { color: var(--accent); }
 
-        header p {
-            margin: 10px 0 0 0;
-            opacity: 0.8;
-            font-size: 1.1rem;
-        }
+    .badge {
+      display: inline-block;
+      font-size: .75rem; background: var(--bg); color: var(--muted);
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 2px 10px; margin-bottom: 14px;
+    }
+    .highlight {
+      background: #e8f5e9; border-left: 4px solid var(--accent);
+      border-radius: 6px; padding: 12px 16px; margin: 12px 0;
+      font-size: .93rem;
+    }
+    .warning {
+      background: #fff8e1; border-left: 4px solid #f59e0b;
+      border-radius: 6px; padding: 12px 16px; margin: 12px 0;
+      font-size: .93rem;
+    }
 
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px auto;
-            max-width: 600px;
-            padding: 0 20px;
-        }
+    /* ── Section title ── */
+    .section-title {
+      text-align: center; margin-bottom: 32px;
+    }
+    .section-title h2 { font-size: 1.4rem; color: var(--header); }
+    .section-title p  { color: var(--muted); font-size: .9rem; margin-top: 4px; }
 
-        .btn {
-            background-color: var(--accent-color);
-            color: #ffffff;
-            text-decoration: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-align: center;
-            flex: 1;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s, background-color 0.2s;
-        }
+    /* ── Footer ── */
+    footer {
+      background: var(--header); color: rgba(255,255,255,.8);
+      text-align: center; padding: 32px 20px;
+      font-size: .85rem; line-height: 2;
+    }
+    footer a { color: #a5d6d0; }
 
-        .btn:hover {
-            background-color: #005b51;
-            transform: translateY(-2px);
-        }
-
-        main {
-            max-width: 800px;
-            margin: 0 auto 60px auto;
-            padding: 0 20px;
-        }
-
-        section {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            margin-bottom: 40px;
-            box-shadow: 0 4px 12px rgba(59, 43, 36, 0.05);
-            border: 1px solid rgba(59, 43, 36, 0.08);
-            scroll-margin-top: 20px;
-        }
-
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--bg-color);
-            padding-bottom: 10px;
-            margin-top: 0;
-            font-size: 1.6rem;
-        }
-
-        .meta-date {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-        }
-
-        h3 {
-            color: var(--accent-color);
-            margin-top: 25px;
-            font-size: 1.2rem;
-        }
-
-        p, li {
-            font-size: 1.05rem;
-            color: #4a3c36;
-        }
-
-        .text-white {
-            color: #ffffff;
-        }
-        
-        ul {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            background-color: var(--primary-color);
-            color: #ffffff;
-            font-size: 0.95rem;
-        }
-
-        .text-white {
-            color: #ffffff;
-        }
-
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
-            .brand-logo { width: 100px; height: 100px; }
-            section { padding: 25px; }
-            .nav-buttons { flex-direction: column; }
-        }
-    </style>
+    @media (max-width: 600px) {
+      .card { padding: 20px 18px; }
+      header h1 { font-size: 1.3rem; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <img src="asset/image/ccd-logo-gold.png" alt="CHO-CHA-DA Logo" class="brand-logo">
-        <h1>CHO-CHA-DA SME Assistant</h1>
-        <p class="text-white">by MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span></p>
-        <p class="text-white">Legal Information & Global Developer Center</p>
-    </header>
+<header>
+  <img src="../images/ccd-logo-gold.png" alt="SME Assistant logo" />
+  <h1>SME Assistant — Privacy Policy</h1>
+  <p>MaeChada (แม่ชฎา) · นโยบายความเป็นส่วนตัว</p>
+</header>
 
-    <div class="nav-buttons">
-        <a href="#thai-version" class="btn">🇹🇭 ภาษาไทย (Thai)</a>
-        <a href="#english-version" class="btn">🇬🇧 English Version</a>
-    </div>
+<nav>
+  <a class="th" href="#thai-version" onclick="show('thai-version')">🇹🇭 ภาษาไทย</a>
+  <a class="en" href="#english-version" onclick="show('english-version')">🇬🇧 English</a>
+</nav>
 
 <main>
-        <!-- ================= THAI VERSION ================= -->
-        <section id="thai-version">
-            <h2>นโยบายความเป็นส่วนตัวและลิขสิทธิ์</h2>
-            <div class="meta-date">ปรับปรุงล่าสุด: 31 พฤษภาคม 2026</div>
 
-            <p>แอปพลิเคชัน "CHO-CHA-DA SME Assistant" พัฒนาโดย MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span> ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของท่าน นโยบายความเป็นส่วนตัวฉบับนี้จัดทำขึ้นเพื่อชี้แจงรายละเอียดเกี่ยวกับการจัดเก็บ การใช้ และการคุ้มครองข้อมูลภายในระบบการจัดการยอดขายและคลังสินค้าสำหรับผู้ประกอบการ</p>
+<!-- ══════════════════════════════════════
+     THAI VERSION
+     ══════════════════════════════════════ -->
+<section class="lang" id="thai-version">
 
-            <h3>1. การจัดเก็บข้อมูลและการใช้งาน</h3>
-            <ul>
-                <li><strong>เวอร์ชันใช้งานในเครื่อง (Stand-alone):</strong> ข้อมูลสินค้า สต็อก รายการออเดอร์ และประวัติการรับเงิน (เงินสด, โอนเงิน, Grab) ทั้งหมด จะถูกจัดเก็บอยู่ภายในหน่วยความจำของอุปกรณ์มือถือของท่านเท่านั้น ระบบไม่มีการดึงข้อมูลเหล่านั้นออกมาภายนอก เว้นแต่ท่านจะใช้งานระบบสำรองข้อมูลผ่าน Google Drive ส่วนตัวของท่านเอง</li>
-                <li><strong>เวอร์ชันคลาวด์ (SaaS):</strong> ข้อมูลจะถูกจัดเก็บและซิงค์ผ่านระบบ Firebase Cloud เพื่อประโยชน์ในการบริหารจัดการหลายสาขาและการแยกสิทธิ์เข้าถึงระหว่างเจ้าของร้านและพนักงาน</li>
-            </ul>
+  <div class="section-title">
+    <h2>นโยบายความเป็นส่วนตัว</h2>
+    <p>อัปเดตล่าสุด: 1 มิถุนายน 2569 (2026)</p>
+  </div>
 
-            <h3>2. การขอเข้าถึงสิทธิ์บนอุปกรณ์ (App Permissions)</h3>
-            <ul>
-                <li><strong>สิทธิ์การเข้าถึงกล้องถ่ายภาพ (Camera Permission):</strong> แอปพลิเคชันจำเป็นต้องขอเข้าถึงกล้องเพื่อใช้เป็นระบบสแกน QR Code (Scan to Cart) ในการค้นหาสินค้าและตัดสต็อกอย่างรวดเร็ว โดยไม่มีการบันทึกภาพถ่ายหรือวิดีโอใดๆ ของท่านเก็บไว้ในระบบ</li>
-            </ul>
+  <div class="card">
+    <h2>1. ข้อมูลทั่วไป</h2>
+    <span class="badge">ผู้พัฒนา</span>
+    <p>แอปพลิเคชัน <strong>SME Assistant</strong> พัฒนาและเผยแพร่โดย <strong>MaeChada (แม่ชฎา)</strong> นโยบายนี้อธิบายว่าเราเก็บรวบรวม ใช้ และปกป้องข้อมูลของคุณอย่างไรเมื่อใช้งานแอปของเรา</p>
+    <p>การดาวน์โหลดหรือใช้งานแอปถือว่าคุณยอมรับนโยบายนี้ หากไม่เห็นด้วยกรุณาหยุดใช้งาน</p>
+  </div>
 
-            <h3>3. การคุ้มครองลิขสิทธิ์ (Copyright Notice)</h3>
-            <p>ซอฟต์แวร์ โครงสร้างโค้ด รหัสโปรแกรม การออกแบบหน้าจอ (UI/UX) เครื่องหมายการค้า และสัญลักษณ์ทั้งหมดของแอปพลิเคชัน "CHO-CHA-DA SME Assistant" เป็นทรัพย์สินทางปัญญาของ MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span> ห้ามผู้ใดทำซ้ำ ดัดแปลง คัดลอกซอร์สโค้ด หรือทำวิศวกรรมย้อนกลับ (Reverse Engineering) โดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษรจาก MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span> อย่างเด็ดขาด</p>
+  <div class="card">
+    <h2>2. ข้อมูลที่เก็บรวบรวม</h2>
+    <span class="badge">Local-first</span>
+    <h3>ข้อมูลที่คุณสร้างในแอป</h3>
+    <ul>
+      <li>ชื่อสินค้า ราคา และจำนวนสต็อก</li>
+      <li>ประวัติการขายและการรับของ</li>
+      <li>ชื่อร้าน โลโก้ร้าน และการตั้งค่าแอป</li>
+      <li>รหัส PIN (เก็บเป็น SHA-256 hash เท่านั้น ไม่เก็บรหัสจริง)</li>
+    </ul>
+    <div class="highlight">
+      <strong>ข้อมูลทั้งหมดถูกเก็บในเครื่องของคุณเท่านั้น</strong> (เวอร์ชัน Standalone) — ไม่มีการส่งข้อมูลออกสู่ภายนอก ไม่มีการสร้างบัญชีผู้ใช้ ไม่มีการเก็บ email หรือข้อมูลส่วนตัวใดๆ
+    </div>
+    <h3>ข้อมูลที่เราไม่เก็บ</h3>
+    <ul>
+      <li>ชื่อ นามสกุล หรืออีเมลของคุณ</li>
+      <li>หมายเลขโทรศัพท์หรือที่อยู่</li>
+      <li>ข้อมูลการชำระเงินหรือบัตรเครดิต</li>
+      <li>ตำแหน่งที่ตั้ง (Location)</li>
+      <li>รูปภาพหรือวิดีโอจากกล้อง</li>
+    </ul>
+  </div>
 
-            <p style="margin-top: 30px; font-weight: 600;">หากท่านมีข้อสงสัยเกี่ยวกับนโยบายฉบับนี้ สามารถติดต่อผู้พัฒนาได้ผ่านช่องทางอย่างเป็นทางการของ MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span></p>
-        </section>
+  <div class="card">
+    <h2>3. การใช้สิทธิ์เข้าถึงอุปกรณ์</h2>
+    <span class="badge">Permissions</span>
+    <h3>กล้อง (Camera)</h3>
+    <p>ใช้เพื่อ <strong>สแกน QR Code</strong> เมื่อขายสินค้าเท่านั้น ไม่มีการบันทึกหรือส่งภาพใดๆ</p>
+    <h3>ไบโอเมตริก (Biometric)</h3>
+    <p>ใช้ลายนิ้วมือหรือ Face ID สำหรับปลดล็อกแอป ข้อมูลไบโอเมตริกจัดการโดย Android/iOS โดยตรง แอปไม่มีสิทธิ์เข้าถึงข้อมูลเหล่านั้น</p>
+    <h3>พื้นที่เก็บข้อมูล (Storage)</h3>
+    <p>ใช้สำหรับบันทึกไฟล์สำรองข้อมูล CSV และโลโก้ร้านค้าที่คุณเลือกเอง</p>
+  </div>
 
-        <!-- ================= ENGLISH VERSION ================= -->
-        <section id="english-version">
-            <h2>Privacy Policy & Copyright Notice</h2>
-            <div class="meta-date">Last Updated: May 31, 2026</div>
+  <div class="card">
+    <h2>4. บริการของบุคคลที่สาม</h2>
+    <span class="badge">Third-party</span>
+    <h3>เวอร์ชัน Standalone (ปัจจุบัน)</h3>
+    <p>ไม่ใช้บริการของบุคคลที่สามใดๆ ไม่มีโฆษณา ไม่มีการติดตาม (Tracking) ไม่มี Analytics</p>
+    <h3>เวอร์ชัน Cloud SaaS (อนาคต)</h3>
+    <p>เวอร์ชัน Cloud ที่กำลังพัฒนาจะใช้ <strong>Firebase (Google LLC)</strong> สำหรับการซิงก์ข้อมูลหลายสาขา โดย Firebase มีนโยบายความเป็นส่วนตัวของตัวเอง: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
+    <div class="warning">เวอร์ชัน Cloud ยังไม่เปิดให้ใช้งาน จะแจ้งให้ทราบและขอความยินยอมก่อนเสมอ</div>
+  </div>
 
-            <p>CHO-CHA-DA SME Assistant, developed by MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span>, is committed to protecting your privacy. This Privacy Policy explains how we handle data, permissions, and intellectual property within our point-of-sale and inventory management platform for entrepreneurs.</p>
+  <div class="card">
+    <h2>5. การเก็บรักษาและลบข้อมูล</h2>
+    <span class="badge">Data Retention</span>
+    <p>ข้อมูลทั้งหมดอยู่ในเครื่องของคุณตลอดเวลา คุณสามารถลบข้อมูลได้ด้วยตัวเองโดย:</p>
+    <ul>
+      <li><strong>ลบข้อมูลบางส่วน</strong> — ใช้ฟังก์ชัน "ลบสินค้า" ในแอปได้เลย</li>
+      <li><strong>ลบข้อมูลทั้งหมด</strong> — ไปที่ <em>Settings → ล้างข้อมูลแอป</em> หรือถอนการติดตั้งแอป</li>
+      <li><strong>ส่งคำขอลบ</strong> — ติดต่อเราที่ <a href="mailto:dr.chadchadaporn@gmail.com">dr.chadchadaporn@gmail.com</a> เราจะตอบกลับภายใน 30 วัน</li>
+    </ul>
+    <div class="highlight">เมื่อถอนการติดตั้งแอป ข้อมูลทั้งหมดจะถูกลบออกจากเครื่องโดยอัตโนมัติ</div>
+  </div>
 
-            <h3>1. Data Collection and Storage</h3>
-            <ul>
-                <li><strong>Stand-alone / Free Version:</strong> All product data, stock levels, order carts, and payment history (Cash, Bank Transfer, Grab) are stored locally on your device. No data is transmitted to external servers unless you manually trigger the personal cloud backup via your private Google Drive.</li>
-                <li><strong>Cloud SaaS Version:</strong> Data is securely synchronized via Firebase Cloud to facilitate multi-store management and role-based access control (Owner vs. Staff).</li>
-            </ul>
+  <div class="card">
+    <h2>6. สิทธิ์ของผู้ใช้</h2>
+    <span class="badge">User Rights</span>
+    <p>คุณมีสิทธิ์เต็มที่เหนือข้อมูลของคุณ ได้แก่:</p>
+    <ul>
+      <li><strong>สิทธิ์เข้าถึง</strong> — ดูข้อมูลทั้งหมดได้ในแอปทุกเมื่อ</li>
+      <li><strong>สิทธิ์แก้ไข</strong> — แก้ไขข้อมูลสินค้า ราคา และการตั้งค่าได้เสมอ</li>
+      <li><strong>สิทธิ์ส่งออก</strong> — Export ข้อมูลเป็นไฟล์ CSV ผ่าน Settings → Backup</li>
+      <li><strong>สิทธิ์ลบ</strong> — ลบข้อมูลได้ทุกเมื่อตามวิธีในข้อ 5</li>
+    </ul>
+  </div>
 
-            <h3>2. Device Permissions</h3>
-            <ul>
-                <li><strong>Camera Access:</strong> The app requires camera permission solely for the QR Code Scanner functionality (Scan to Cart) to process product IDs and manage inventory in real-time. No photos or video recordings are collected or stored.</li>
-            </ul>
+  <div class="card">
+    <h2>7. การแชร์ข้อมูลกับผู้อื่น</h2>
+    <span class="badge">Data Sharing</span>
+    <p><strong>เราไม่ขาย ไม่ให้เช่า และไม่แชร์ข้อมูลของคุณกับบุคคลที่สามใดๆ</strong> ทั้งสิ้น ยกเว้นกรณีที่กฎหมายบังคับ</p>
+    <p>หากคุณเลือกใช้ฟังก์ชัน Backup เพื่อส่งไฟล์ CSV ไปยัง Google Drive หรือแอปอื่น การกระทำนั้นเป็นการตัดสินใจของคุณเองทั้งสิ้น</p>
+  </div>
 
-            <h3>3. Copyright & Proprietary Rights</h3>
-            <p><strong>Copyright (c) 2026 MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span>. All rights reserved.</strong></p>
-            <p>All software source code, user interface designs (UI/UX), graphics, trademarks, and brand assets of the "CHO-CHA-DA SME Assistant" application are the exclusive proprietary property of MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span>. Unauthorized copying, modification, distribution, or reverse engineering of this application is strictly prohibited under international copyright laws.</p>
+  <div class="card">
+    <h2>8. ความเป็นส่วนตัวของเด็ก</h2>
+    <span class="badge">Children's Privacy</span>
+    <p>แอปนี้ออกแบบสำหรับ <strong>เจ้าของธุรกิจและผู้ประกอบการ</strong> ไม่ได้มุ่งเป้าหมายไปที่เด็กอายุต่ำกว่า 13 ปี</p>
+    <p>เราไม่เก็บรวบรวมข้อมูลส่วนตัวใดๆ โดยเจตนาจากเด็กที่มีอายุต่ำกว่า 13 ปี หากพบว่ามีการเก็บข้อมูลดังกล่าวโดยไม่ตั้งใจ กรุณาติดต่อเราเพื่อลบข้อมูลทันที</p>
+  </div>
 
-            <p style="margin-top: 30px; font-weight: 600;">For any inquiries regarding this policy, please contact us through the official MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span> developer channels.</p>
-        </section>
-    </main>
+  <div class="card">
+    <h2>9. การรักษาความปลอดภัย</h2>
+    <span class="badge">Security</span>
+    <ul>
+      <li>รหัส PIN เก็บในรูปแบบ <strong>SHA-256 Hash + Salt</strong> ไม่มีใครดูรหัสจริงได้รวมถึงเรา</li>
+      <li>ข้อมูลแอปปกป้องด้วยระบบ Sandbox ของ Android/iOS</li>
+      <li>ไม่มีการส่งข้อมูลผ่านเครือข่ายในเวอร์ชัน Standalone</li>
+    </ul>
+  </div>
 
-    <footer>
-      <p class="text-white">© 2026 MaeChada <span style="opacity: 0.7; font-size: 0.95rem; font-weight: normal;">(แม่ชฎา)</span>. All rights reserved.</p>
-      <p class="text-white" style="margin-top:6px">
-        <a href="https://maechada2024.github.io/chochada-sme-assistant/docs/manual.html" style="color:var(--teal)" data-lang="en">User Manual (คู่มือผู้ใช้)</a>
-      </p>
-    </footer>
+  <div class="card">
+    <h2>10. ทรัพย์สินทางปัญญา</h2>
+    <span class="badge">IP Rights</span>
+    <p>โค้ด การออกแบบ กราฟิก และเครื่องหมายการค้าทั้งหมดเป็นทรัพย์สินของ MaeChada (แม่ชฎา) ห้ามคัดลอก ดัดแปลง แจกจ่าย หรือทำวิศวกรรมย้อนกลับโดยไม่ได้รับอนุญาตเป็นลายลักษณ์อักษร</p>
+  </div>
+
+  <div class="card">
+    <h2>11. การเปลี่ยนแปลงนโยบาย</h2>
+    <span class="badge">Updates</span>
+    <p>เราอาจอัปเดตนโยบายนี้เป็นครั้งคราว การเปลี่ยนแปลงที่มีนัยสำคัญจะแจ้งผ่าน:</p>
+    <ul>
+      <li>การแจ้งเตือนในแอปเมื่ออัปเดตครั้งต่อไป</li>
+      <li>หน้าเว็บนี้พร้อมวันที่อัปเดตที่ชัดเจน</li>
+    </ul>
+    <p>การใช้แอปต่อไปหลังจากวันที่ระบุถือว่ายอมรับนโยบายใหม่</p>
+  </div>
+
+  <div class="card">
+    <h2>12. ติดต่อเรา</h2>
+    <span class="badge">Contact</span>
+    <p>หากมีคำถามหรือต้องการใช้สิทธิ์เกี่ยวกับข้อมูลของคุณ ติดต่อได้ที่:</p>
+    <ul>
+      <li><strong>ผู้พัฒนา:</strong> MaeChada (แม่ชฎา)</li>
+      <li><strong>อีเมล:</strong> <a href="mailto:dr.chadchadaporn@gmail.com">dr.chadchadaporn@gmail.com</a></li>
+      <li><strong>เว็บไซต์:</strong> <a href="https://maechada2024.github.io/maechada-home/" target="_blank">maechada2024.github.io/maechada-home</a></li>
+    </ul>
+    <p>เราจะตอบกลับภายใน <strong>30 วันทำการ</strong></p>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════
+     ENGLISH VERSION
+     ══════════════════════════════════════ -->
+<section class="lang" id="english-version">
+
+  <div class="section-title">
+    <h2>Privacy Policy</h2>
+    <p>Last updated: June 1, 2026</p>
+  </div>
+
+  <div class="card">
+    <h2>1. Overview</h2>
+    <span class="badge">Developer</span>
+    <p>The <strong>SME Assistant</strong> application is developed and published by <strong>MaeChada (แม่ชฎา)</strong>. This policy explains how we collect, use, and protect your information when you use our app.</p>
+    <p>By downloading or using the app you agree to this policy. If you disagree, please discontinue use.</p>
+  </div>
+
+  <div class="card">
+    <h2>2. Data We Collect</h2>
+    <span class="badge">Local-first</span>
+    <h3>Data you create inside the app</h3>
+    <ul>
+      <li>Product names, prices, and stock quantities</li>
+      <li>Sales and stock-receiving history</li>
+      <li>Shop name, logo, and app settings</li>
+      <li>PIN code (stored as a SHA-256 hash only — the actual PIN is never stored)</li>
+    </ul>
+    <div class="highlight">
+      <strong>All data is stored on your device only</strong> (Standalone version) — nothing is transmitted externally. No user accounts are created. No email addresses or personal details are collected.
+    </div>
+    <h3>Data we do NOT collect</h3>
+    <ul>
+      <li>Your name, surname, or email address</li>
+      <li>Phone number or physical address</li>
+      <li>Payment or credit card information</li>
+      <li>GPS location data</li>
+      <li>Photos or video recordings</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3. Device Permissions</h2>
+    <span class="badge">Permissions</span>
+    <h3>Camera</h3>
+    <p>Used exclusively to <strong>scan QR codes</strong> at point of sale. No images are captured, stored, or transmitted.</p>
+    <h3>Biometrics</h3>
+    <p>Fingerprint or Face ID is used to unlock the app. Biometric data is managed directly by Android/iOS; the app has no access to it.</p>
+    <h3>Storage</h3>
+    <p>Used to save CSV backup files and the shop logo image you choose.</p>
+  </div>
+
+  <div class="card">
+    <h2>4. Third-Party Services</h2>
+    <span class="badge">Third-party</span>
+    <h3>Standalone version (current)</h3>
+    <p>No third-party services, no advertising SDKs, no tracking, and no analytics are used.</p>
+    <h3>Cloud SaaS version (future)</h3>
+    <p>The upcoming Cloud version will use <strong>Firebase (Google LLC)</strong> for multi-branch data synchronisation. Firebase has its own privacy policy: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
+    <div class="warning">The Cloud version is not yet available. You will be notified and asked for consent before it activates.</div>
+  </div>
+
+  <div class="card">
+    <h2>5. Data Retention &amp; Deletion</h2>
+    <span class="badge">Data Retention</span>
+    <p>All data resides on your device at all times. You can delete it at any moment by:</p>
+    <ul>
+      <li><strong>Partial deletion</strong> — use the "Delete product" function inside the app</li>
+      <li><strong>Full deletion</strong> — go to <em>Settings → Clear app data</em>, or uninstall the app</li>
+      <li><strong>Deletion request</strong> — email us at <a href="mailto:dr.chadchadaporn@gmail.com">dr.chadchadaporn@gmail.com</a>; we will respond within 30 days</li>
+    </ul>
+    <div class="highlight">Uninstalling the app permanently removes all data from your device.</div>
+  </div>
+
+  <div class="card">
+    <h2>6. Your Rights</h2>
+    <span class="badge">User Rights</span>
+    <p>You have full control over your data:</p>
+    <ul>
+      <li><strong>Access</strong> — view all data inside the app at any time</li>
+      <li><strong>Correction</strong> — edit products, prices, and settings at any time</li>
+      <li><strong>Export</strong> — export data as CSV via Settings → Backup</li>
+      <li><strong>Deletion</strong> — delete data at any time as described in Section 5</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>7. Data Sharing</h2>
+    <span class="badge">Data Sharing</span>
+    <p><strong>We do not sell, rent, or share your data with any third party</strong> except as required by law.</p>
+    <p>If you choose to use the Backup feature to send a CSV file to Google Drive or another app, that action is entirely your own decision.</p>
+  </div>
+
+  <div class="card">
+    <h2>8. Children's Privacy</h2>
+    <span class="badge">Children's Privacy</span>
+    <p>This app is designed for <strong>business owners and entrepreneurs</strong>. It is not directed at children under the age of 13.</p>
+    <p>We do not knowingly collect personal information from children under 13. If you believe such data has been collected unintentionally, please contact us immediately for deletion.</p>
+  </div>
+
+  <div class="card">
+    <h2>9. Security</h2>
+    <span class="badge">Security</span>
+    <ul>
+      <li>PIN codes are stored as <strong>SHA-256 Hash + Salt</strong> — no one, including us, can read the actual PIN</li>
+      <li>App data is protected by the Android/iOS Sandbox</li>
+      <li>No network transmission in the Standalone version</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>10. Intellectual Property</h2>
+    <span class="badge">IP Rights</span>
+    <p>All code, interface design, graphics, and trademarks are the proprietary property of MaeChada (แม่ชฎา). Unauthorised copying, modification, distribution, or reverse engineering is strictly prohibited without written permission.</p>
+  </div>
+
+  <div class="card">
+    <h2>11. Policy Updates</h2>
+    <span class="badge">Updates</span>
+    <p>We may update this policy from time to time. Significant changes will be communicated via:</p>
+    <ul>
+      <li>An in-app notification at the next update</li>
+      <li>This page with a clearly marked revision date</li>
+    </ul>
+    <p>Continued use of the app after the stated date constitutes acceptance of the revised policy.</p>
+  </div>
+
+  <div class="card">
+    <h2>12. Contact Us</h2>
+    <span class="badge">Contact</span>
+    <p>For questions or to exercise your data rights, please contact:</p>
+    <ul>
+      <li><strong>Developer:</strong> MaeChada (แม่ชฎา)</li>
+      <li><strong>Email:</strong> <a href="mailto:dr.chadchadaporn@gmail.com">dr.chadchadaporn@gmail.com</a></li>
+      <li><strong>Website:</strong> <a href="https://maechada2024.github.io/maechada-home/" target="_blank">maechada2024.github.io/maechada-home</a></li>
+    </ul>
+    <p>We aim to respond within <strong>30 business days</strong>.</p>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 MaeChada (แม่ชฎา). All rights reserved. · สงวนลิขสิทธิ์</p>
+  <p style="margin-top:8px;">
+    <a href="https://maechada2024.github.io/chochada-sme-assistant/docs/manual.html">📖 User Manual / คู่มือการใช้งาน</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:dr.chadchadaporn@gmail.com">✉ Contact / ติดต่อ</a>
+  </p>
+</footer>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('.lang').forEach(el => el.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+  }
+  // Default: show Thai
+  show('thai-version');
+</script>
 
 </body>
 </html>
